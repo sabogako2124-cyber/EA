@@ -1,4 +1,5 @@
 node_modules/
-cafe-portal.db
-.env   .vs/
-.vs/
+*.db
+*.sqlite
+*.sqlite3
+.env
