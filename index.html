@@ -6,67 +6,266 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafe Portal - STI Global City</title>
     <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+		<script type="module" src="app.js"></script>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">
-            <span class="logo-icon">🍴</span>
-            <div>
-                <h2>CAFÉ PORTAL</h2>
-                <small>STI GLOBAL CITY</small>
-            </div>
-        </div>
+	<!-- LOGIN PAGE -->
+	<section id="login-page" class="login-page-container">
 
-        <nav>
-            <button class="nav-btn active" data-page="home">⌂ Home</button>
-            <button class="nav-btn" data-page="cart">
-                🛒 Cart (<span id="cart-count">0</span>)
-            </button>
-            <button class="nav-btn" data-page="orders">▤ Orders</button>
-            <button class="nav-btn" data-page="alerts">♧ Alerts</button>
-            <button class="nav-btn" data-page="profile">♙ Profile</button>
-        </nav>
+		<!-- LEFT SIDE -->
+		<div class="login-left-panel">
 
-        <span class="guest">♙ Guest</span>
-    </header>
+			<div class="login-brand">
 
-    <main>
-        <section id="home-page" class="page">
-            <div class="welcome-banner">
-                <p>WELCOME TO</p>
-                <h1>Café Portal!</h1>
-                <p>Good food. Great mood. All in one place.</p>
-                <span class="banner-decoration">🍽️</span>
-            </div>
+				<div class="login-logo">☕</div>
 
-            <div class="filter-search">
-                <div class="categories">
-                    <button class="category-btn active" data-category="All">All</button>
-                    <button class="category-btn" data-category="Meals">Meals</button>
-                    <button class="category-btn" data-category="Snacks">Snacks</button>
-                    <button class="category-btn" data-category="Drinks">Drinks</button>
-                    <button class="category-btn" data-category="Desserts">Desserts</button>
-                </div>
+				<h1>CAFÉ PORTAL</h1>
 
-                <input
-                    type="search"
-                    id="product-search"
-                    placeholder="Search for products..."
+				<h3>STI College Global City</h3>
+
+				<p>
+					Your all-in-one digital cafeteria —
+					browse the menu, place orders,
+					and pay seamlessly.
+				</p>
+
+			</div>
+
+		</div>
+
+		<!-- RIGHT SIDE -->
+		<div class="login-right-panel">
+
+			<div class="login-form-container">
+
+				<h2>Welcome back!</h2>
+
+				<p class="login-subtitle">
+					Sign in to your Café Portal account to continue.
+				</p>
+
+				<form id="login-form">
+
+					<label class="login-label">
+						ACCOUNT TYPE
+					</label>
+
+					<div class="account-types">
+
+						<button type="button"
+								class="account-type-btn active"
+								data-role="Student">
+							Student
+						</button>
+
+						<button type="button"
+								class="account-type-btn"
+								data-role="Faculty">
+							Faculty
+						</button>
+
+						<button type="button"
+								class="account-type-btn"
+								data-role="Staff">
+							Staff
+						</button>
+
+					</div>
+
+					<label for="login-email" class="login-label">
+						STUDENT NUMBER / EMAIL
+					</label>
+
+					<input
+						type="text"
+						id="login-email"
+						class="login-input"
+						placeholder="Enter your student number or email"
+						required=""
                 >
-            </div>
 
-            <div class="section-heading">
-                <div>
-                    <p class="eyebrow">OUR MENU</p>
-                    <h2>Available Products</h2>
-                </div>
-                <p id="item-count">Loading products...</p>
-            </div>
+						<label for="login-password" class="login-label">
+							PASSWORD
+						</label>
 
-            <div id="product-list" class="product-grid"></div>
-        </section>
+						<input
+							type="password"
+							id="login-password"
+							class="login-input"
+							placeholder="Enter your password"
+							required=""
+                >
+
+							<button type="submit" class="login-button">
+								Log In
+							</button>
+
+							<p id="login-message" class="login-message"></p>
+
+						</form>
+
+				<p class="login-footer">
+					Sign in using your Café Portal account.
+					<br>
+                For STI Global City students, faculty, and staff.
+            </p>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<!-- MAIN SIDEBAR -->
+	<aside class="sidebar" id="main-navbar" hidden="">
+
+		<!-- BRAND -->
+		<div class="sidebar-brand">
+			<div class="brand-icon">☕</div>
+
+			<div class="brand-text">
+				<h2>CAFÉ PORTAL</h2>
+				<small>STI Global City</small>
+			</div>
+		</div>
+
+		<!-- NAVIGATION -->
+		<nav class="sidebar-nav">
+
+			<button class="nav-btn active" data-page="home">
+				<span class="nav-icon">⌂</span>
+				Home
+			</button>
+
+			<button class="nav-btn" data-page="cart">
+				<span class="nav-icon">🛍</span>
+				Cart
+				<span id="cart-count">0</span>
+			</button>
+
+			<button class="nav-btn" data-page="orders">
+				<span class="nav-icon">▤</span>
+				Orders
+			</button>
+
+			<button class="nav-btn" data-page="alerts">
+				<span class="nav-icon">♧</span>
+				Alerts
+			</button>
+
+			<button class="nav-btn" data-page="profile">
+				<span class="nav-icon">♙</span>
+				Profile
+			</button>
+
+		</nav>
+
+		<!-- USER PROFILE -->
+		<div class="sidebar-profile">
+			<div class="profile-avatar">JD</div>
+
+			<div>
+				<strong id="sidebar-user-name">Student</strong>
+				<small id="sidebar-user-role">Student</small>
+			</div>
+		</div>
+
+	</aside>
+
+	<main id="main-content" hidden="">
+		<!-- HOME PAGE -->
+		<section id="home-page" class="page">
+
+			<!-- YELLOW HEADER -->
+			<div class="home-header">
+
+				<div class="home-header-top">
+
+					<div class="welcome-text">
+						<p>Good day,</p>
+						<h2>
+							<span id="welcome-user-name">Student</span> 👋
+						</h2>
+					</div>
+
+					<button class="notification-button"
+							data-page="alerts"
+							aria-label="Notifications">
+						🔔
+					</button>
+
+				</div>
+
+				<!-- SEARCH -->
+				<div class="home-search-container">
+
+					<span class="search-icon">⌕</span>
+
+					<input
+						type="search"
+						id="product-search"
+						placeholder="Search food or category..."
+            >
+
+					</div>
+
+				<!-- CATEGORY FILTER -->
+				<div class="categories">
+
+					<button class="category-btn active"
+							data-category="All">
+						🍴 All
+					</button>
+
+					<button class="category-btn"
+							data-category="Best Sellers">
+						🏆 Best Sellers
+					</button>
+
+					<button class="category-btn"
+							data-category="Combo">
+						🍱 Combo
+					</button>
+
+					<button class="category-btn"
+							data-category="Desserts">
+						🍮 Desserts
+					</button>
+
+					<button class="category-btn"
+							data-category="Promos">
+						🏷 Promos
+					</button>
+
+					<button class="category-btn"
+							data-category="Drinks">
+						🥤 Drinks
+					</button>
+
+					<button class="category-btn"
+							data-category="Others">
+						🍽 Others
+					</button>
+
+				</div>
+
+			</div>
+
+			<!-- PRODUCTS -->
+			<div class="home-products">
+
+				<div class="products-heading">
+					<h3>ALL ITEMS</h3>
+					<p id="item-count">Loading products...</p>
+				</div>
+
+				<!-- JavaScript will generate product cards here -->
+				<div id="product-list" class="product-grid"></div>
+
+			</div>
+
+		</section>
 
         <section id="cart-page" class="page" hidden>
             <h1>🛒 My Cart</h1>
