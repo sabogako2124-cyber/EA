@@ -266,17 +266,44 @@
 			</div>
 
 		</section>
+		<!-- CART PAGE -->
+		<section id="cart-page" class="page" hidden="">
 
-        <section id="cart-page" class="page" hidden>
-            <h1>🛒 My Cart</h1>
-            <div id="cart-items"></div>
-            <div class="cart-summary">
-                <h3>Total: ₱<span id="cart-total">0.00</span></h3>
-                <button id="checkout-button" class="primary-btn">
-                    Checkout
-                </button>
-            </div>
-        </section>
+			<!-- CART HEADER -->
+			<div class="cart-header">
+				<h2>My Cart</h2>
+			</div>
+
+			<!-- EMPTY CART -->
+			<div id="empty-cart" class="empty-cart">
+
+				<div class="cart-icon">🛒</div>
+
+				<h3>Your cart is empty</h3>
+
+				<button id="browse-menu-btn" class="browse-btn">
+					Browse Menu
+				</button>
+
+			</div>
+
+			<!-- CART ITEMS -->
+			<div id="cart-items"></div>
+
+			<!-- CART SUMMARY -->
+			<div id="cart-summary" class="cart-summary">
+
+				<h3>
+					Total: ₱<span id="cart-total">0.00</span>
+				</h3>
+
+				<button id="checkout-button" class="primary-btn">
+					Checkout
+				</button>
+
+			</div>
+
+		</section>
 
         <section id="orders-page" class="page" hidden>
             <h1>▤ My Orders</h1>
@@ -292,12 +319,79 @@
             </div>
         </section>
 
-        <section id="profile-page" class="page" hidden>
-            <h1>♙ My Profile</h1>
-            <p>Account Type: Guest</p>
-            <p>You are browsing the cafeteria portal as a guest.</p>
-        </section>
+		<!-- PROFILE PAGE -->
+		<section id="profile-page" class="page" hidden="">
+
+			<!-- PROFILE HEADER -->
+			<div class="profile-header">
+				<h2>My Profile</h2>
+			</div>
+
+			<div class="profile-content">
+
+				<!-- STUDENT AVATAR -->
+				<div class="profile-identity">
+
+					<div class="profile-main-avatar" id="profile-avatar">
+						JD
+					</div>
+
+					<h2 id="profile-name">Student Test</h2>
+
+					<p id="profile-role">Student</p>
+
+				</div>
+
+				<!-- STUDENT INFORMATION -->
+				<div class="profile-info-card">
+
+					<div class="profile-info-row">
+						<span>Email</span>
+						<strong id="profile-email">Loading...</strong>
+					</div>
+
+					<div class="profile-info-row">
+						<span>Student ID</span>
+						<strong id="profile-student-id">2024-1234-ST</strong>
+					</div>
+
+					<div class="profile-info-row">
+						<span>Account Type</span>
+						<strong id="profile-account-type">Student</strong>
+					</div>
+
+				</div>
+
+				<!-- PROFILE OPTIONS -->
+				<div class="profile-options">
+
+					<button id="edit-profile-btn" class="profile-option-btn">
+						<span>✏️ &nbsp; Edit Profile</span>
+						<span>›</span>
+					</button>
+
+					<button class="profile-option-btn" data-profile-page="alerts">
+						<span>🔔 &nbsp; Notifications</span>
+						<span>›</span>
+					</button>
+
+					<button class="profile-option-btn" data-profile-page="orders">
+						<span>📋 &nbsp; Order History</span>
+						<span>›</span>
+					</button>
+
+				</div>
+
+				<!-- LOGOUT -->
+				<button id="logout-btn" class="profile-logout-btn">
+					Log Out
+				</button>
+
+			</div>
+
+		</section>
     </main>
+
 
 </body>
 </html>

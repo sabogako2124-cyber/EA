@@ -1,12 +1,11 @@
-
+// Import Firebase Authentication
 import { auth } from "./firebase-config.js";
 
+// Import Firebase login and logout functions
 import {
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
-
-
-
 
 
 // For Firebase
@@ -399,22 +398,58 @@ function updateCartCount() {
 }
 
 function renderCart() {
+
     const cartItems = document.getElementById("cart-items");
     const cartTotal = document.getElementById("cart-total");
 
+    const emptyCart = document.getElementById("empty-cart");
+    const cartSummary = document.getElementById("cart-summary");
+
+    // CHECK IF CART IS EMPTY
     if (cart.length === 0) {
-        cartItems.innerHTML = "<p>Your cart is empty.</p>";
+
+        emptyCart.hidden = false;
+
+        cartItems.innerHTML = "";
+
+        cartItems.hidden = true;
+        cartSummary.hidden = true;
+
     } else {
+
+        // HIDE EMPTY CART MESSAGE
+        emptyCart.hidden = true;
+
+        cartItems.hidden = false;
+        cartSummary.hidden = false;
+
+        // DISPLAY CART PRODUCTS
         cartItems.innerHTML = cart.map((product, index) => `
+
             <div class="cart-row">
-                <span>${product.name} — ₱${product.price.toFixed(2)}</span>
-                <button data-remove="${index}">Remove</button>
+
+                <span>
+                    ${product.name} — ₱${product.price.toFixed(2)}
+                </span>
+
+                <button data-remove="${index}">
+                    Remove
+                </button>
+
             </div>
+
         `).join("");
+
     }
 
-    const total = cart.reduce((sum, product) => sum + product.price, 0);
+    // CALCULATE TOTAL
+    const total = cart.reduce(
+        (sum, product) => sum + product.price,
+        0
+    );
+
     cartTotal.textContent = total.toFixed(2);
+
 }
 
 document.getElementById("cart-items").addEventListener("click", event => {
@@ -495,7 +530,8 @@ function openHomePage() {
             button.dataset.page === "home"
         );
     });
-
+     // Load Firebase student information
+   loadStudentProfile();
 }
 
 
@@ -528,14 +564,153 @@ document.getElementById("login-form").addEventListener("submit", async (event) =
         // Open Cafe Portal Home Page
         openHomePage();
 
+   } catch (error) {
+
+    console.error("FULL ERROR:", error);
+    console.error("ERROR MESSAGE:", error.message);
+    console.error("ERROR CODE:", error.code);
+    console.error("ERROR STACK:", error.stack);
+
+    message.textContent =
+        error.message || "An unexpected error occurred.";
+
+}
+
+});
+
+// ==============================
+// BROWSE MENU NAVIGATION
+// ==============================
+
+document.getElementById("browse-menu-btn").addEventListener("click", () => {
+
+    // Hide cart page
+    document.getElementById("cart-page").hidden = true;
+
+    // Show home page
+    document.getElementById("home-page").hidden = false;
+
+    // Update active sidebar button
+    document.querySelectorAll(".sidebar .nav-btn").forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.dataset.page === "home"
+        );
+
+    });
+
+});
+
+
+// ========================================
+// PROFILE PAGE FUNCTIONALITY
+// ========================================
+
+// DISPLAY STUDENT INFORMATION
+function loadStudentProfile() {
+
+    const user = auth.currentUser;
+
+    if (!user) return;
+
+    // Firebase email
+    const email = user.email || "";
+
+    // Sample student details
+    const studentName = user.displayName || "Student Test";
+    const studentId = "2024-1234-ST";
+    const accountType = "Student";
+
+    // Generate initials
+    const initials = studentName
+        .trim()
+        .split(/\s+/)
+        .map(word => word.charAt(0))
+        .slice(0, 2)
+        .join("")
+        .toUpperCase();
+
+    // Update profile information
+    document.getElementById("profile-name").textContent = studentName;
+    document.getElementById("profile-email").textContent = email;
+    document.getElementById("profile-student-id").textContent = studentId;
+    document.getElementById("profile-account-type").textContent = accountType;
+    document.getElementById("profile-role").textContent = accountType;
+    document.getElementById("profile-avatar").textContent = initials;
+
+    // Update sidebar
+    document.getElementById("sidebar-user-name").textContent = studentName;
+    document.getElementById("sidebar-user-role").textContent = accountType;
+    document.querySelector(".sidebar .profile-avatar").textContent = initials;
+}
+
+
+// ========================================
+// PROFILE BUTTON NAVIGATION
+// ========================================
+
+document.querySelectorAll("[data-profile-page]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const pageName = button.dataset.profilePage;
+
+        // Use existing sidebar navigation
+        const navButton = document.querySelector(
+            `.sidebar .nav-btn[data-page="${pageName}"]`
+        );
+
+        if (navButton) {
+            navButton.click();
+        }
+
+    });
+
+});
+
+
+// ========================================
+// EDIT PROFILE BUTTON
+// ========================================
+
+document.getElementById("edit-profile-btn").addEventListener("click", () => {
+
+    alert("Edit Profile feature will be available soon.");
+
+});
+
+
+// ========================================
+// FIREBASE LOGOUT
+// ========================================
+
+document.getElementById("logout-btn").addEventListener("click", async () => {
+
+    const confirmed = confirm("Are you sure you want to log out?");
+
+    if (!confirmed) return;
+
+    try {
+
+        await signOut(auth);
+
+        // Hide dashboard
+        mainNavbar.hidden = true;
+        mainContent.hidden = true;
+
+        // Show login page
+        loginPage.hidden = false;
+
+        // Clear password field
+        document.getElementById("login-password").value = "";
+
     } catch (error) {
 
-        console.error("Firebase login error:", error.code);
+        console.error("Logout error:", error);
 
-        message.textContent =
-            "Invalid email or password. Please try again.";
+        alert("Unable to log out. Please try again.");
 
     }
 
 });
-
