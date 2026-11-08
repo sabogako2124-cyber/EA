@@ -531,7 +531,7 @@ function openHomePage() {
         );
     });
      // Load Firebase student information
-   loadStudentProfile();
+   ladStudentProfile();
 }
 
 

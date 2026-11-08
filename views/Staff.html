@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Portal | Staff Dashboard</title>
+  <style>
+    :root{--yellow:#ffd400;--ink:#101a32;--muted:#8390a7;--line:#ebedf2;--bg:#f7f8fa;--blue:#4c9fff;--green:#0ccb70;--orange:#ff9b00}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--ink)}body{background:#e5e5e5;padding:18px}button{font:inherit}button:focus-visible{outline:3px solid #447eee;outline-offset:3px}
+    .app{display:flex;max-width:1230px;min-height:calc(100vh - 36px);margin:auto;background:var(--bg);border-radius:7px;box-shadow:0 7px 28px #0002;overflow:hidden}
+    .sidebar{width:214px;flex:0 0 214px;background:white;display:flex;flex-direction:column;border-right:1px solid var(--line)}
+    .brand{height:72px;background:var(--yellow);display:flex;align-items:center;gap:10px;padding:15px 13px}
+    .brand-icon{background:#fff;border-radius:12px;width:34px;height:34px;display:grid;place-items:center;font-size:21px;box-shadow:0 2px 5px #0002}
+    .brand strong{display:block;font-size:12px;font-weight:900;letter-spacing:-.3px}.brand small{display:block;font-size:9px;margin-top:2px}
+    .nav{padding:11px 10px;display:grid;gap:4px}.nav-item{border:0;background:transparent;width:100%;display:flex;gap:13px;align-items:center;text-align:left;padding:12px 13px;border-radius:11px;color:#64728c;font-size:13px;font-weight:700;cursor:default}
+    .nav-item .icon{font-size:18px;width:18px;text-align:center;filter:grayscale(1);opacity:.75}.nav-item.active{background:var(--yellow);color:#0c1730}.nav-item.active .icon{filter:none;opacity:1}.nav-item.enabled{cursor:pointer}.nav-item.enabled:hover:not(.active){background:#fff3b1}
+    .sidebar-foot{margin-top:auto;padding:13px 10px;border-top:1px solid var(--line)}.identity{display:flex;gap:9px;align-items:center;font-size:12px;font-weight:bold;padding:1px 4px 11px}.avatar{background:var(--yellow);height:28px;width:28px;border-radius:50%;display:grid;place-items:center;font-size:10px}.logout{border:0;border-radius:10px;background:#f0f1f4;color:#8390a7;font-size:11px;font-weight:700;padding:11px;width:100%;cursor:default}
+    .content{min-width:0;flex:1}.topbar{height:72px;background:var(--yellow);padding:16px 22px;display:flex;align-items:center}.eyebrow{font-weight:900;font-size:10px;letter-spacing:1.5px}.topbar h1{font-size:18px;margin:5px 0 0;font-weight:900}.main{padding:15px 24px 32px;max-width:1000px}.stats{display:flex;flex-wrap:wrap;gap:12px}.stat{width:132px;min-height:109px;background:white;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 2px #16243b13;padding:13px;text-align:center;border-bottom:3px solid var(--accent)}.stat .symbol{font-size:23px}.stat .count{font-size:25px;font-weight:900;color:var(--count);margin-top:4px}.stat .label{font-size:11px;color:#697997;margin-top:3px;font-weight:700}
+    .section-title{font-size:10px;letter-spacing:1.4px;font-weight:900;color:#91a0b9;margin:19px 0 10px}.management{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:715px}.management-card{display:flex;align-items:center;text-align:left;gap:11px;min-height:59px;border-radius:15px;background:white;border:1px solid var(--line);padding:12px 13px;color:var(--ink);box-shadow:0 2px 2px #16243b0b;cursor:default}.management-card .symbol{font-size:21px}.management-card strong{display:block;font-size:13px}.management-card small{display:block;color:#8996ae;margin-top:4px;font-size:11px}.management-card .chevron{margin-left:auto;color:#cbd1dd;font-size:20px}.management-card.enabled{cursor:pointer}.management-card.enabled:hover{border-color:#f1c800;box-shadow:0 4px 14px #f1c80033}
+    .mini-stats{display:flex;gap:10px}.mini-card{width:169px;padding:15px 14px 12px;background:#fff;border-radius:14px;border:1px solid var(--line);box-shadow:0 2px 2px #0001}.mini-card small{display:block;font-size:10px;font-weight:900;color:#9ba6bd}.mini-card strong{font-size:25px;display:block;margin-top:5px}.mini-card span{color:#a2aec2;font-size:11px}
+    .charts,.lower{max-width:715px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;min-height:235px}.panel h3{font-size:13px;margin:0;font-weight:900}.placeholder{height:165px;display:grid;place-items:center;color:#b1b9c7;font-size:12px;text-align:center;background:repeating-linear-gradient(to bottom,transparent 0,transparent 37px,#f2f4f7 38px,#f2f4f7 39px);margin-top:12px}.lower .panel{min-height:145px}.lower .placeholder{height:85px}
+    .foods-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.foods-head h2{font-size:21px;margin:0}.back{border:0;background:#fff;border-radius:50%;padding:9px 13px;margin-right:10px;cursor:pointer}.food-heading{display:flex;align-items:center}.food-filters{display:flex;gap:8px;margin:18px 0}.filter{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:25px;padding:8px 13px;color:#58657d}.filter.selected{background:#101a32;color:#fff}.add-food{background:#101a32;color:#fff;border:0;border-radius:25px;padding:11px 16px;font-size:12px;font-weight:800;opacity:.55;cursor:default}.empty-state{display:grid;place-content:center;text-align:center;min-height:360px;background:#fff;border-radius:16px;border:1px dashed #d9dfeb;padding:24px}.empty-state .symbol{font-size:43px}.empty-state h3{font-size:18px;margin:10px 0 7px}.empty-state p{font-size:13px;color:#8794a9;margin:0;max-width:340px;line-height:1.7}.hidden{display:none!important}
+    @media(max-width:760px){body{padding:0}.app{border-radius:0;min-height:100vh}.sidebar{width:77px;flex-basis:77px}.brand{padding:12px;justify-content:center}.brand div:last-child,.nav-item .text,.identity .name{display:none}.nav-item{justify-content:center;padding:12px}.nav-item .icon{font-size:21px}.identity{justify-content:center}.logout{font-size:9px}.main{padding:15px}.management,.charts,.lower{grid-template-columns:1fr}.stat{width:calc(50% - 6px)}.mini-card{width:50%}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">☕</div><div><strong>CAFÉ PORTAL</strong><small>Staff Panel</small></div></div>
+      <nav class="nav" aria-label="Staff navigation">
+        <button class="nav-item active enabled" id="homeNav" type="button" aria-current="page"><span class="icon">⌂</span><span class="text">Home</span></button>
+        <button class="nav-item" type="button" disabled><span class="icon">▤</span><span class="text">Orders</span></button>
+        <button class="nav-item enabled" id="foodsNav" type="button"><span class="icon">☺</span><span class="text">Foods</span></button>
+        <button class="nav-item" type="button" disabled><span class="icon">▥</span><span class="text">Analytics</span></button>
+        <button class="nav-item" type="button" disabled><span class="icon">♙</span><span class="text">Profile</span></button>
+      </nav>
+      <div class="sidebar-foot"><div class="identity"><span class="avatar">ST</span><span class="name">Staff</span></div><button class="logout" type="button" disabled>Log Out</button></div>
+    </aside>
+    <div class="content">
+      <header class="topbar"><div><div class="eyebrow" id="topEyebrow">CANTEEN STAFF</div><h1 id="topTitle">Staff Dashboard</h1></div></header>
+      <main class="main">
+        <section id="homeView" aria-label="Staff home">
+          <div class="stats">
+            <div class="stat" style="--accent:#55a9ff;--count:#1966ee"><div class="symbol">📋</div><div class="count">0</div><div class="label">All Orders</div></div>
+            <div class="stat" style="--accent:#ffcc00;--count:#d58a00"><div class="symbol">🕒</div><div class="count">0</div><div class="label">Pending</div></div>
+            <div class="stat" style="--accent:#ff8b00;--count:#f15916"><div class="symbol">👨‍🍳</div><div class="count">0</div><div class="label">Preparing</div></div>
+            <div class="stat" style="--accent:#10d276;--count:#009a55"><div class="symbol">🔔</div><div class="count">0</div><div class="label">Ready</div></div>
+            <div class="stat" style="--accent:#d6d9e0;--count:#77849a"><div class="symbol">✅</div><div class="count">0</div><div class="label">Completed</div></div>
+          </div>
+          <div class="section-title">MANAGEMENT</div>
+          <div class="management">
+            <button class="management-card" type="button" disabled><span class="symbol">📋</span><span><strong>Manage Orders</strong><small>View, verify, and update statuses</small></span><span class="chevron">›</span></button>
+            <button class="management-card enabled" id="foodManagementBtn" type="button"><span class="symbol">🍽</span><span><strong>Food Management</strong><small>Add, edit, toggle availability</small></span><span class="chevron">›</span></button>
+          </div>
+          <div class="section-title">📊 SALES ANALYTICS</div>
+          <div class="mini-stats"><div class="mini-card"><small>TOTAL ITEMS SOLD</small><strong>0</strong><span>All time</span></div><div class="mini-card"><small>TOTAL REVENUE</small><strong>₱0</strong><span>All time</span></div></div>
+          <div class="charts"><div class="panel"><h3>Items Sold</h3><div class="placeholder">No sales data yet</div></div><div class="panel"><h3>Revenue (₱)</h3><div class="placeholder">No revenue data yet</div></div></div>
+          <div class="lower"><div class="panel"><h3>🏆 Most Ordered</h3><div class="placeholder">No orders yet</div></div><div class="panel"><h3>Sales by Item</h3><div class="placeholder">No items sold yet</div></div></div>
+        </section>
+        <section id="foodsView" class="hidden" aria-label="Food management">
+          <div class="foods-head"><div class="food-heading"><button class="back" id="backHome" type="button" aria-label="Back to home">←</button><h2>Food Management</h2></div><button class="add-food" type="button" disabled title="Available when product creation is connected">+ Add Food</button></div>
+          <div class="food-filters"><span class="filter selected">All <b>0</b></span><span class="filter">Available <b>0</b></span><span class="filter">Off <b>0</b></span></div>
+          <div class="empty-state"><div class="symbol">🍔</div><h3>No food products yet</h3><p>Your menu is empty. Products added by cafeteria staff will appear here once we connect Food Management to Supabase.</p></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script>
+    const homeView=document.getElementById('homeView');
+    const foodsView=document.getElementById('foodsView');
+    const homeNav=document.getElementById('homeNav');
+    const foodsNav=document.getElementById('foodsNav');
+    function showView(view){
+      const foods=view==='foods';
+      homeView.classList.toggle('hidden',foods);
+      foodsView.classList.toggle('hidden',!foods);
+      homeNav.classList.toggle('active',!foods);
+      foodsNav.classList.toggle('active',foods);
+      homeNav.setAttribute('aria-current',foods?'false':'page');
+      foodsNav.setAttribute('aria-current',foods?'page':'false');
+      document.getElementById('topEyebrow').textContent=foods?'STAFF':'CANTEEN STAFF';
+      document.getElementById('topTitle').textContent=foods?'Food Management':'Staff Dashboard';
+    }
+    homeNav.addEventListener('click',()=>showView('home'));
+    foodsNav.addEventListener('click',()=>showView('foods'));
+    document.getElementById('foodManagementBtn').addEventListener('click',()=>showView('foods'));
+    document.getElementById('backHome').addEventListener('click',()=>showView('home'));
+  </script>
+</body>
+</html>

@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "live-server --port=5500 --open=/views/index.html"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.11.1",
-    "express": "^5.3.0"
+    "express": "^5.3.0",
+    "live-server": "^1.2.2"
   },
   "allowScripts": {
     "better-sqlite3@12.11.1": true

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Portal | Student / Faculty</title>
+    <link rel="stylesheet" href="../public/css/dashboard.css">
+</head>
+<body>
+    <!-- Keep dashboard hidden until the Supabase role check succeeds. -->
+    <aside class="sidebar" id="main-navbar" hidden>
+        <div class="sidebar-brand">
+            <div class="brand-icon" aria-hidden="true">☕</div>
+            <div class="brand-text">
+                <h2>CAFÉ PORTAL</h2>
+                <small>STI Global City</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Dashboard navigation">
+            <button type="button" class="nav-btn active" data-page="home"><span class="nav-icon" aria-hidden="true">⌂</span> Home</button>
+            <button type="button" class="nav-btn" data-page="cart"><span class="nav-icon" aria-hidden="true">▢</span> Cart <span id="cart-count" class="cart-count">0</span></button>
+            <button type="button" class="nav-btn" data-page="orders"><span class="nav-icon" aria-hidden="true">▤</span> Orders</button>
+            <button type="button" class="nav-btn" data-page="alerts"><span class="nav-icon" aria-hidden="true">♧</span> Alerts</button>
+            <button type="button" class="nav-btn" data-page="profile"><span class="nav-icon" aria-hidden="true">♙</span> Profile</button>
+        </nav>
+
+        <div class="sidebar-profile">
+            <div class="profile-avatar" aria-hidden="true">SF</div>
+            <div class="sidebar-profile-text">
+                <strong id="sidebar-user-name">Student / Faculty</strong>
+                <small id="sidebar-user-role">Student / Faculty</small>
+            </div>
+        </div>
+    </aside>
+
+    <main id="main-content" hidden>
+        <!-- HOME -->
+        <section id="home-page" class="page">
+            <header class="home-header">
+                <div class="home-header-top">
+                    <div class="welcome-text">
+                        <p>Good day,</p>
+                        <h1><span id="welcome-user-name">Student / Faculty</span> <span aria-hidden="true">👋</span></h1>
+                    </div>
+                    <button type="button" class="notification-button" data-page="alerts" aria-label="View notifications">🔔</button>
+                </div>
+                <div class="home-search-container">
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input type="search" id="product-search" placeholder="Search food or category..." aria-label="Search food or category">
+                </div>
+                <div class="categories" role="group" aria-label="Product categories">
+                    <button type="button" class="category-btn active" data-category="All">🍴 All</button>
+                    <button type="button" class="category-btn" data-category="Best Sellers">🏆 Best Sellers</button>
+                    <button type="button" class="category-btn" data-category="Combo">🍱 Combo</button>
+                    <button type="button" class="category-btn" data-category="Desserts">🍮 Desserts</button>
+                    <button type="button" class="category-btn" data-category="Promos">🏷 Promos</button>
+                    <button type="button" class="category-btn" data-category="Drinks">🥤 Drinks</button>
+                    <button type="button" class="category-btn" data-category="Others">🍽 Others</button>
+                </div>
+            </header>
+
+            <div class="home-products">
+                <div class="products-heading">
+                    <h2>ALL ITEMS</h2>
+                    <p id="item-count">0 items</p>
+                </div>
+
+                <!-- EMPTY ON PURPOSE: Staff will add products through the staff dashboard later. -->
+                <div id="product-list" class="product-grid" aria-live="polite"></div>
+                <div id="empty-products" class="empty-products">
+                    <div class="empty-products-icon" aria-hidden="true">☕</div>
+                    <h3>No products available yet</h3>
+                    <p>The cafeteria staff will add food and drinks here soon.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CART -->
+        <section id="cart-page" class="page secondary-page" hidden>
+            <div class="section-title"><h2>My Cart</h2><p>Review the items you want to order.</p></div>
+            <div id="empty-cart" class="empty-panel">
+                <div class="empty-panel-icon" aria-hidden="true">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Browse the menu when products become available.</p>
+                <button type="button" id="browse-menu-btn" class="primary-btn">Browse Menu</button>
+            </div>
+            <div id="cart-items" hidden></div>
+            <div id="cart-summary" class="cart-summary" hidden>
+                <h3>Total: ₱<span id="cart-total">0.00</span></h3>
+                <button type="button" id="checkout-button" class="primary-btn">Checkout</button>
+            </div>
+        </section>
+
+        <!-- ORDERS -->
+        <section id="orders-page" class="page secondary-page" hidden>
+            <div class="section-title"><h2>My Orders</h2><p>See your cafeteria order history.</p></div>
+            <div id="orders-list" class="empty-panel"><div class="empty-panel-icon" aria-hidden="true">▤</div><h3>No orders yet</h3><p>Your orders will appear here after you place one.</p></div>
+        </section>
+
+        <!-- ALERTS -->
+        <section id="alerts-page" class="page secondary-page" hidden>
+            <div class="section-title"><h2>Notifications</h2><p>Updates about your orders.</p></div>
+            <div id="alerts-list" class="empty-panel"><div class="empty-panel-icon" aria-hidden="true">🔔</div><h3>No notifications yet</h3><p>You'll see cafeteria updates here.</p></div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="profile-page" class="page secondary-page" hidden>
+            <div class="section-title profile-header"><h2>My Profile</h2><p>Your Café Portal account information.</p></div>
+            <div class="profile-content">
+                <div class="profile-identity">
+                    <div class="profile-main-avatar" id="profile-avatar">SF</div>
+                    <h2 id="profile-name">Student / Faculty</h2>
+                    <p id="profile-role">Student / Faculty</p>
+                </div>
+                <div class="profile-info-card">
+                    <div class="profile-info-row"><span>Email</span><strong id="profile-email">Loading...</strong></div>
+                    <div class="profile-info-row"><span>Student ID</span><strong id="profile-student-id">Not available</strong></div>
+                    <div class="profile-info-row"><span>Account Type</span><strong id="profile-account-type">Student / Faculty</strong></div>
+                </div>
+                <div class="profile-options">
+                    <button type="button" id="edit-profile-btn" class="profile-option-btn">✏️ &nbsp; Edit Profile <span>›</span></button>
+                    <button type="button" class="profile-option-btn" data-profile-page="alerts">🔔 &nbsp; Notifications <span>›</span></button>
+                    <button type="button" class="profile-option-btn" data-profile-page="orders">📋 &nbsp; Order History <span>›</span></button>
+                </div>
+                <button type="button" id="logout-btn" class="profile-logout-btn">Log Out</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Your existing auth checker should reveal main-navbar and main-content
+         only for a verified Student / Faculty user. -->
+    <script type="module" src="../public/js/dashboard-auth.js"></script>
+    <!-- Do not load the old app.js yet: it still contains Firebase code. -->
+</body>
+</html>
