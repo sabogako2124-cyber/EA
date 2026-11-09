@@ -165,3 +165,5 @@ button { cursor: pointer; }
     .profile-info-row { flex-direction: column; gap: 4px; }
     .profile-info-row strong { text-align: left; }
 }
+
+
