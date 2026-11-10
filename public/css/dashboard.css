@@ -121,7 +121,12 @@ button { cursor: pointer; }
 .cart-summary h3 { margin-top: 0; }
 
 /* PROFILE */
-.profile-content { max-width: 650px; }
+/* PROFILE */
+.profile-content {
+    width: 100%;
+    max-width: 730px;
+    margin: 0 auto;
+}
 .profile-identity { background: white; border-radius: 15px; padding: 27px; text-align: center; margin-bottom: 15px; }
 .profile-main-avatar {
     width: 68px; height: 68px; margin: 0 auto 12px; border-radius: 50%;
@@ -313,3 +318,216 @@ button { cursor: pointer; }
 .sidebar-profile[data-page="profile"]:hover {
     background: #fff8d8;
 }
+
+
+/* ========================================
+   ALERTS PAGE
+======================================== */
+
+.alerts-page {
+    padding: 0 32px 35px;
+}
+
+.alerts-header {
+    background: #ffffff;
+    padding: 22px 40px;
+    margin: -1px -32px 20px;
+    border-bottom: 1px solid #eef0f4;
+}
+
+.alerts-header h2 {
+    margin: 0;
+    color: #10254a;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.alerts-grid {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.alert-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #eef0f4;
+    border-radius: 22px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.alert-dot {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    margin-top: 8px;
+    background: #e1e5eb;
+    border-radius: 50%;
+}
+
+.alert-details h3 {
+    margin: 0 0 5px;
+    color: #9aa4b5;
+    font-size: 17px;
+}
+
+.alert-details p {
+    margin: 0 0 8px;
+    color: #68758a;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.alert-details small {
+    color: #c0c9d7;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .alerts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .alerts-header {
+        padding: 20px;
+    }
+}
+
+
+/* ALERT COUNT BADGE */
+.alert-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    margin-left: auto;
+    background: #ff3b50;
+    color: white;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.alert-count:empty,
+.alert-count[hidden] {
+    display: none;
+}
+
+/* ALERT HEADER */
+.alerts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 22px 40px;
+    margin: -1px -32px 20px;
+    border-bottom: 1px solid #eef0f4;
+}
+
+.alerts-header h2 {
+    margin: 0;
+    color: #10254a;
+    font-size: 24px;
+}
+
+#unread-count {
+    margin: 5px 0 0;
+    color: #d99b00;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#mark-all-read {
+    border: none;
+    background: #f1f2f4;
+    color: #68758a;
+    padding: 10px 17px;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#mark-all-read:hover {
+    background: #e5e7eb;
+}
+
+/* ALERT CARDS */
+.alerts-grid {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.alert-card {
+    display: flex;
+    gap: 14px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #eef0f4;
+    border-left: 5px solid transparent;
+    border-radius: 22px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.alert-card.unread {
+    border-left-color: #ffd400;
+}
+
+.alert-dot {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    height: 10px;
+    margin-top: 8px;
+    border-radius: 50%;
+    background: #e1e5eb;
+}
+
+.alert-card.unread .alert-dot {
+    background: #ffd400;
+}
+
+.alert-details h3 {
+    margin: 0 0 5px;
+    color: #9aa4b5;
+    font-size: 17px;
+}
+
+.alert-card.unread h3 {
+    color: #10254a;
+}
+
+.alert-details p {
+    margin: 0 0 8px;
+    color: #68758a;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.alert-details small {
+    color: #c0c9d7;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .alerts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .alerts-header {
+        padding: 20px;
+    }
+}
+

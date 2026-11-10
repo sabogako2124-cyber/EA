@@ -21,7 +21,7 @@
             <button type="button" class="nav-btn active" data-page="home"><span class="nav-icon" aria-hidden="true">⌂</span> Home</button>
             <button type="button" class="nav-btn" data-page="cart"><span class="nav-icon" aria-hidden="true">▢</span> Cart <span id="cart-count" class="cart-count">0</span></button>
             <button type="button" class="nav-btn" data-page="orders"><span class="nav-icon" aria-hidden="true">▤</span> Orders</button>
-            <button type="button" class="nav-btn" data-page="alerts"><span class="nav-icon" aria-hidden="true">♧</span> Alerts</button>
+           <button type="button" class="nav-btn" data-page="alerts"><span class="nav-icon" aria-hidden="true">♧</span>Alerts<span id="alert-count" class="alert-count">2</span></button>
             <button type="button" class="nav-btn" data-page="profile"><span class="nav-icon" aria-hidden="true">♙</span> Profile</button>
         </nav>
 
@@ -99,10 +99,56 @@
         </section>
 
         <!-- ALERTS -->
-        <section id="alerts-page" class="page secondary-page" hidden>
-            <div class="section-title"><h2>Notifications</h2><p>Updates about your orders.</p></div>
-            <div id="alerts-list" class="empty-panel"><div class="empty-panel-icon" aria-hidden="true">🔔</div><h3>No notifications yet</h3><p>You'll see cafeteria updates here.</p></div>
-        </section>
+
+<!-- ALERTS -->
+
+<!-- ALERTS -->
+<section id="alerts-page" class="page secondary-page alerts-page" hidden>
+
+    <header class="alerts-header">
+        <div>
+            <h2>Alerts</h2>
+            <p id="unread-count">2 unread</p>
+        </div>
+
+        <button type="button" id="mark-all-read">
+            Mark all read
+        </button>
+    </header>
+
+    <div class="alerts-grid">
+
+        <article class="alert-card unread">
+            <span class="alert-dot"></span>
+            <div class="alert-details">
+                <h3>New Promo Available!</h3>
+                <p>Adobo + Lumpia + Rice combo is now available for only ₱95!</p>
+                <small>2 min ago</small>
+            </div>
+        </article>
+
+        <article class="alert-card unread">
+            <span class="alert-dot"></span>
+            <div class="alert-details">
+                <h3>Item Update</h3>
+                <p>Chicken Adobo + Rice is temporarily unavailable today.</p>
+                <small>1 hr ago</small>
+            </div>
+        </article>
+
+        <article class="alert-card">
+            <span class="alert-dot"></span>
+            <div class="alert-details">
+                <h3>Order Ready!</h3>
+                <p>Your order #ORD-2024-001 is ready for pickup at the cafeteria counter.</p>
+                <small>2 hr ago</small>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+
 
         <!-- PROFILE -->
         <section id="profile-page" class="page secondary-page" hidden>
