@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Food Item | Café Portal</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../public/css/add-food.css">
+
+    <!-- JavaScript -->
+    <script type="module" src="../public/js/add-food.js" defer></script>
+</head>
+
+<body>
+
+    <div class="staff-layout">
+
+        <!-- ========== SIDEBAR ========== -->
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-logo">☕</div>
+
+                <div class="brand-text">
+                    <h2>CAFÉ PORTAL</h2>
+                    <span>Staff Panel</span>
+                </div>
+            </div>
+
+            <!-- NAVIGATION -->
+            <nav class="sidebar-nav">
+
+                <a href="staff.html#home" class="nav-item">
+                    <span class="nav-icon">⌂</span>
+                    <span>Home</span>
+                </a>
+
+                <a href="staff.html" class="nav-item">
+                    <span class="nav-icon">▤</span>
+                    <span>Orders</span>
+                </a>
+
+               <a href="staff.html#foods" class="nav-item active">
+    <span class="nav-icon">☺</span>
+    <span>Foods</span>
+</a>
+
+                <a href="staff.html" class="nav-item">
+                    <span class="nav-icon">▥</span>
+                    <span>Analytics</span>
+                </a>
+
+                <a href="staff.html" class="nav-item">
+                    <span class="nav-icon">♙</span>
+                    <span>Profile</span>
+                </a>
+
+            </nav>
+
+            <!-- STAFF PROFILE -->
+            <div class="sidebar-footer">
+
+         <div class="staff-profile">
+    <div class="staff-avatar">ST</div>
+
+    <div class="staff-info">
+        <strong>Staff</strong>
+        <small>Staff Panel</small>
+    </div>
+</div>
+
+                <button
+                    type="button"
+                    id="logout-btn"
+                    class="logout-btn"
+                >
+                    Log Out
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main class="main-content">
+
+            <!-- HEADER -->
+            <header class="page-header">
+
+                  <a href="staff.html#foods" class="back-btn" aria-label="Back to Food Management">←</a>
+    <div>
+        <div class="eyebrow">STAFF</div>
+        <h1>Add Food Item</h1>
+    </div>
+</header>
+
+
+            <!-- CONTENT -->
+            <section class="content-area">
+
+                <form id="add-food-form">
+
+                    <div class="form-card">
+
+                        <!-- FOOD NAME -->
+                        <div class="form-group">
+
+                            <label for="food-name">
+                                FOOD NAME <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="food-name"
+                                name="product_name"
+                                placeholder="e.g. Classic Burger Meal"
+                                maxlength="150"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+                        <div class="form-group">
+
+                            <label for="food-description">
+                                DESCRIPTION
+                            </label>
+
+                            <textarea
+                                id="food-description"
+                                name="description"
+                                rows="4"
+                                placeholder="Describe the food item..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- PRICE -->
+                        <div class="form-group">
+
+                            <label for="food-price">
+                                PRICE (₱) <span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="number"
+                                id="food-price"
+                                name="price"
+                                placeholder="0.00"
+                                min="0.01"
+                                step="0.01"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- CATEGORY -->
+                        <div class="form-group">
+
+                            <label>
+                                CATEGORY <span class="required">*</span>
+                            </label>
+
+                            <div
+                                id="category-list"
+                                class="category-list"
+                                role="group"
+                                aria-label="Food category"
+                            >
+
+                                <!--
+                                    Categories will eventually
+                                    load from Supabase.
+
+                                    These buttons are temporary
+                                    placeholders for UI testing.
+                                -->
+
+                                <button
+                                    type="button"
+                                    class="category-btn"
+                                    data-category="Combo"
+                                    aria-pressed="false"
+                                >
+                                    Combo
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="category-btn"
+                                    data-category="Desserts"
+                                    aria-pressed="false"
+                                >
+                                    Desserts
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="category-btn"
+                                    data-category="Promos"
+                                    aria-pressed="false"
+                                >
+                                    Promos
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="category-btn"
+                                    data-category="Drinks"
+                                    aria-pressed="false"
+                                >
+                                    Drinks
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="category-btn"
+                                    data-category="Others"
+                                    aria-pressed="false"
+                                >
+                                    Others
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="add-category-btn"
+                                    class="add-category-btn"
+                                >
+                                    + New Category
+                                </button>
+
+                            </div>
+
+                            <!-- Selected category ID from Supabase -->
+                            <input
+                                type="hidden"
+                                id="selected-category"
+                                name="category_id"
+                            >
+
+                        </div>
+
+
+                        <!-- FOOD PHOTO -->
+                        <div class="form-group">
+
+                            <label for="food-image">
+                                FOOD PHOTO
+                            </label>
+
+                            <div class="image-upload-container">
+
+                                <label
+                                    for="food-image"
+                                    class="image-upload-area"
+                                >
+
+                                    <div
+                                        id="image-upload-placeholder"
+                                        class="image-upload-placeholder"
+                                    >
+
+                                        <div class="camera-icon">📷</div>
+
+                                        <strong>
+                                            Tap to upload photo
+                                        </strong>
+
+                                        <small>
+                                            JPG, PNG, WEBP supported
+                                        </small>
+
+                                    </div>
+
+                                    <!-- IMAGE PREVIEW -->
+                                    <img
+                                        id="image-preview"
+                                        class="image-preview"
+                                        alt="Selected food photo preview"
+                                        hidden
+                                    >
+
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="food-image"
+                                    name="food_image"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    hidden
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- AVAILABLE FOR ORDER -->
+                        <div class="availability-section">
+
+                            <div class="availability-info">
+
+                                <label for="food-available">
+                                    Available for Order
+                                </label>
+
+                                <p>
+                                    Students and faculty can order this item
+                                </p>
+
+                            </div>
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="food-available"
+                                    name="is_available"
+                                    checked
+                                >
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SUBMIT BUTTON -->
+                    <button
+                        type="submit"
+                        id="submit-food-btn"
+                        class="submit-food-btn"
+                    >
+                        + Add Food Item
+                    </button>
+
+                    <!-- STATUS MESSAGE -->
+                    <p
+                        id="form-message"
+                        class="form-message"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

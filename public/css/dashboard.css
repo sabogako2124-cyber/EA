@@ -165,3 +165,151 @@ button { cursor: pointer; }
     .profile-info-row { flex-direction: column; gap: 4px; }
     .profile-info-row strong { text-align: left; }
 }
+
+/* ==========================================
+   CAFÉ PORTAL — FOOD PRODUCT CARDS
+   ========================================== */
+
+.product-card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.10);
+}
+
+.product-image-wrapper {
+    width: 100%;
+    height: 125px;
+    overflow: hidden;
+    background: #f3f4f6;
+}
+
+.product-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-info h3 {
+    margin: 0 0 5px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.4;
+}
+
+.product-category {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.product-bottom {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.product-price {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--ink);
+}
+
+.add-cart-btn {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: var(--yellow);
+    color: var(--ink);
+    border: none;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.add-cart-btn:hover {
+    background: #eabe00;
+}
+
+/* CART ITEMS */
+
+#cart-items {
+    display: grid;
+    gap: 12px;
+}
+
+.cart-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.cart-row-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cart-row-info strong {
+    font-size: 13px;
+}
+
+.cart-row-info span {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.remove-cart-btn {
+    border: none;
+    border-radius: 8px;
+    background: #fff0f0;
+    color: #c83535;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.remove-cart-btn:hover {
+    background: #ffe0e0;
+}
+
+/* CLICKABLE SIDEBAR PROFILE */
+
+.sidebar-profile[data-page="profile"] {
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.sidebar-profile[data-page="profile"]:hover {
+    background: #fff8d8;
+}

@@ -1,0 +1,1617 @@
+/* ==========================================
+   CAFÉ PORTAL - STAFF DASHBOARD
+   MATCH STUDENT / FACULTY DESIGN
+   ========================================== */
+
+
+/* ==========================================
+   1. ROOT VARIABLES
+   ========================================== */
+
+:root {
+    --yellow: #ffd400;
+    --yellow-light: #fff2aa;
+    --ink: #101827;
+    --muted: #8390a5;
+    --line: #edf0f4;
+    --bg: #f8f9fb;
+    --white: #ffffff;
+
+    --blue: #4c9fff;
+    --green: #0ccb70;
+    --orange: #ff9b00;
+
+    --sidebar-width: 232px;
+}
+
+
+/* ==========================================
+   2. GLOBAL STYLES
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+button {
+    font: inherit;
+}
+
+button:focus-visible {
+    outline: 3px solid #447eee;
+    outline-offset: 3px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==========================================
+   3. MAIN APPLICATION
+   ========================================== */
+
+.app {
+    display: flex;
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+
+    background: var(--bg);
+
+    border-radius: 0;
+    box-shadow: none;
+
+    overflow: visible;
+}
+
+
+/* ==========================================
+   4. SIDEBAR
+   ========================================== */
+
+.sidebar {
+    position: sticky;
+    top: 0;
+
+    width: var(--sidebar-width);
+    flex: 0 0 var(--sidebar-width);
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--white);
+
+    border-right: 1px solid var(--line);
+
+    z-index: 5;
+}
+
+
+/* ==========================================
+   5. SIDEBAR BRAND
+   ========================================== */
+
+.brand {
+    min-height: 80px;
+    height: 80px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 16px 18px;
+
+    background: var(--yellow);
+}
+
+.brand-icon {
+    width: 39px;
+    height: 39px;
+
+    flex: none;
+
+    display: grid;
+    place-items: center;
+
+    background: white;
+
+    border-radius: 11px;
+
+    font-size: 22px;
+}
+
+.brand strong {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 900;
+
+    letter-spacing: -0.3px;
+}
+
+.brand small {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   6. SIDEBAR NAVIGATION
+   ========================================== */
+
+.nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    padding: 14px 10px;
+}
+
+.nav-item {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 13px 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #647086;
+
+    text-align: left;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: default;
+}
+
+.nav-item .icon {
+    width: 22px;
+
+    font-size: 20px;
+    text-align: center;
+
+    line-height: 1;
+
+    filter: grayscale(1);
+    opacity: 0.75;
+}
+
+.nav-item.active {
+    background: var(--yellow);
+
+    color: #0b101d;
+}
+
+.nav-item.active .icon {
+    filter: none;
+    opacity: 1;
+}
+
+.nav-item.enabled {
+    cursor: pointer;
+}
+
+.nav-item.enabled:hover:not(.active) {
+    background: #fff8d8;
+
+    color: var(--ink);
+}
+
+
+/* ==========================================
+   7. SIDEBAR PROFILE
+   MATCH STUDENT / FACULTY
+   ========================================== */
+
+.sidebar-foot {
+    margin-top: auto;
+
+    padding: 18px 15px;
+
+    border-top: 1px solid var(--line);
+}
+
+.identity {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0;
+
+    margin: 0 0 12px;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+
+    flex: none;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--yellow);
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.staff-profile-text {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+
+    min-width: 0;
+}
+
+.staff-profile-text strong {
+    font-size: 12px;
+    font-weight: 700;
+
+    color: var(--ink);
+
+    overflow-wrap: anywhere;
+}
+
+.staff-profile-text small {
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+
+/* ==========================================
+   8. LOGOUT BUTTON
+   ========================================== */
+
+.logout {
+    width: 100%;
+
+    padding: 11px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #f0f1f4;
+
+    color: #8390a7;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: default;
+}
+
+
+/* ==========================================
+   9. MAIN CONTENT LAYOUT
+   ========================================== */
+
+.content {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ==========================================
+   10. YELLOW HEADER
+   ========================================== */
+
+.topbar {
+    width: 100%;
+
+    min-height: 80px;
+    height: 80px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 16px 28px;
+
+    background: var(--yellow);
+}
+
+.eyebrow {
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.topbar h1 {
+    margin: 5px 0 0;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   11. MAIN DASHBOARD CONTENT
+   ========================================== */
+
+.main {
+    width: 100%;
+
+    flex: 1;
+
+    padding: 23px 28px 42px;
+}
+
+#homeView,
+#foodsView {
+    width: 100%;
+
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* ==========================================
+   12. STATISTICS CARDS
+   ========================================== */
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.stat {
+    width: 145px;
+
+    min-height: 120px;
+
+    padding: 15px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+    border-bottom: 3px solid var(--accent);
+
+    border-radius: 14px;
+
+    box-shadow: 0 2px 2px #16243b13;
+
+    text-align: center;
+}
+
+.stat .symbol {
+    font-size: 25px;
+}
+
+.stat .count {
+    margin-top: 4px;
+
+    font-size: 27px;
+    font-weight: 900;
+
+    color: var(--count);
+}
+
+.stat .label {
+    margin-top: 3px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    color: #697997;
+}
+
+
+/* ==========================================
+   13. SECTION TITLES
+   ========================================== */
+
+.section-title {
+    margin: 22px 0 12px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+
+    color: #91a0b9;
+}
+
+
+/* ==========================================
+   14. MANAGEMENT CARDS
+   ========================================== */
+
+.management {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.management-card {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    min-height: 65px;
+
+    padding: 15px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+    border-radius: 15px;
+
+    color: var(--ink);
+
+    text-align: left;
+
+    box-shadow: 0 2px 2px #16243b0b;
+
+    cursor: default;
+}
+
+.management-card .symbol {
+    font-size: 21px;
+}
+
+.management-card strong {
+    display: block;
+
+    font-size: 14px;
+}
+
+.management-card small {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    color: #8996ae;
+}
+
+.management-card .chevron {
+    margin-left: auto;
+
+    font-size: 20px;
+
+    color: #cbd1dd;
+}
+
+.management-card.enabled {
+    cursor: pointer;
+}
+
+.management-card.enabled:hover {
+    border-color: #f1c800;
+
+    box-shadow: 0 4px 14px #f1c80033;
+}
+
+
+/* ==========================================
+   15. SALES ANALYTICS CARDS
+   ========================================== */
+
+.mini-stats {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.mini-card {
+    width: 190px;
+
+    padding: 17px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+
+    box-shadow: 0 2px 2px #0001;
+}
+
+.mini-card small {
+    display: block;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    color: #9ba6bd;
+}
+
+.mini-card strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 27px;
+}
+
+.mini-card span {
+    font-size: 12px;
+
+    color: #a2aec2;
+}
+
+
+/* ==========================================
+   16. CHARTS AND PANELS
+   ========================================== */
+
+.charts,
+.lower {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 12px;
+}
+
+.panel {
+    min-height: 235px;
+
+    padding: 16px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+    border-radius: 15px;
+}
+
+.panel h3 {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.placeholder {
+    height: 165px;
+
+    display: grid;
+    place-items: center;
+
+    margin-top: 12px;
+
+    color: #b1b9c7;
+
+    font-size: 13px;
+
+    text-align: center;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 37px,
+        #f2f4f7 38px,
+        #f2f4f7 39px
+    );
+}
+
+.lower .panel {
+    min-height: 145px;
+}
+
+.lower .placeholder {
+    height: 85px;
+}
+
+
+/* ==========================================
+   17. FOOD MANAGEMENT HEADER
+   ========================================== */
+
+.foods-head {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.food-heading {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.foods-head h2 {
+    margin: 0;
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   18. BACK BUTTON
+   ========================================== */
+
+.back {
+    border: none;
+
+    background: white;
+
+    border-radius: 50%;
+
+    padding: 9px 13px;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   19. ADD FOOD BUTTON
+   ========================================== */
+
+.add-food {
+    padding: 12px 18px;
+
+    background: #101a32;
+
+    color: white;
+
+    border: none;
+    border-radius: 25px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.add-food:hover {
+    background: #273858;
+}
+
+
+/* ==========================================
+   20. FOOD FILTERS
+   ========================================== */
+
+.food-filters {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 18px 0;
+}
+
+.filter {
+    padding: 8px 13px;
+
+    font-size: 12px;
+
+    background: white;
+
+    border: 1px solid var(--line);
+    border-radius: 25px;
+
+    color: #58657d;
+}
+
+.filter.selected {
+    background: #101a32;
+
+    color: white;
+}
+
+
+/* ==========================================
+   21. EMPTY FOOD STATE
+   ========================================== */
+
+.empty-state {
+    width: 100%;
+
+    min-height: 360px;
+
+    display: grid;
+    place-content: center;
+
+    padding: 24px;
+
+    background: white;
+
+    border: 1px dashed #d9dfeb;
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.empty-state .symbol {
+    font-size: 43px;
+}
+
+.empty-state h3 {
+    margin: 10px 0 7px;
+
+    font-size: 18px;
+}
+
+.empty-state p {
+    max-width: 340px;
+
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.7;
+
+    color: #8794a9;
+}
+
+
+/* ==========================================
+   22. TABLET RESPONSIVENESS
+   ========================================== */
+
+@media (max-width: 800px) {
+
+    :root {
+        --sidebar-width: 74px;
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+        flex-basis: var(--sidebar-width);
+    }
+
+    .brand {
+        justify-content: center;
+        padding: 12px 6px;
+    }
+
+    .brand > div:last-child {
+        display: none;
+    }
+
+    .nav {
+        padding: 12px 7px;
+    }
+
+    .nav-item {
+        justify-content: center;
+
+        gap: 0;
+
+        padding: 13px 5px;
+    }
+
+    .nav-item .text {
+        display: none;
+    }
+
+    .nav-item .icon {
+        font-size: 22px;
+    }
+
+    .sidebar-foot {
+        padding: 15px 4px;
+    }
+
+    .identity {
+        justify-content: center;
+    }
+
+    .staff-profile-text,
+    .identity .name {
+        display: none;
+    }
+
+    .main {
+        padding: 20px;
+    }
+
+    .management,
+    .charts,
+    .lower {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        width: calc(50% - 6px);
+    }
+
+    .mini-card {
+        width: calc(50% - 5px);
+    }
+}
+
+
+/* ==========================================
+   23. MOBILE RESPONSIVENESS
+   ========================================== */
+
+@media (max-width: 520px) {
+
+    :root {
+        --sidebar-width: 61px;
+    }
+
+    .sidebar {
+        width: var(--sidebar-width);
+        flex-basis: var(--sidebar-width);
+    }
+
+    .brand-icon {
+        width: 35px;
+        height: 35px;
+
+        font-size: 20px;
+    }
+
+    .main {
+        padding: 17px 13px 30px;
+    }
+
+    .nav-item .icon {
+        font-size: 20px;
+    }
+
+    .stat {
+        width: calc(50% - 6px);
+    }
+
+    .logout {
+        font-size: 9px;
+
+        padding: 9px 3px;
+    }
+
+    .foods-head h2 {
+        font-size: 18px;
+    }
+
+    .add-food {
+        padding: 10px 12px;
+
+        font-size: 11px;
+    }
+}
+
+/* ==========================================
+   STAFF FOOD MANAGEMENT
+   PRODUCT LIST
+   ========================================== */
+
+/* FILTER BUTTONS */
+
+.food-filters .filter {
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.food-filters .filter:hover {
+    background: #fff2aa;
+}
+
+.food-filters .filter.selected:hover {
+    background: #101a32;
+}
+
+.food-filters .filter b {
+    margin-left: 5px;
+    font-size: 11px;
+}
+
+
+/* FOOD LIST */
+
+.staff-food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.staff-food-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 82px;
+
+    padding: 10px 12px;
+
+    background: white;
+    border: 1px solid var(--line);
+    border-left: 3px solid #dce1e8;
+
+    border-radius: 13px;
+
+    box-shadow: 0 2px 5px #0000000a;
+}
+
+.staff-food-row.available {
+    border-left-color: #00d478;
+}
+
+.staff-food-row.unavailable {
+    border-left-color: #dce1e8;
+}
+
+
+/* FOOD IMAGE */
+
+.staff-food-image {
+    width: 56px;
+    height: 56px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    background: #f0f1f3;
+
+    flex-shrink: 0;
+}
+
+
+/* FOOD DETAILS */
+
+.staff-food-details {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    min-width: 0;
+    flex: 1;
+}
+
+.staff-food-details strong {
+    font-size: 13px;
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+.staff-food-details small {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.staff-food-details b {
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+/* RIGHT SIDE ACTIONS */
+
+.staff-food-actions {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+    justify-content: center;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+}
+
+.staff-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+/* AVAILABILITY TOGGLE */
+
+.availability-toggle {
+    position: relative;
+
+    width: 42px;
+    height: 23px;
+
+    border: none;
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.availability-toggle.on {
+    background: #00d478;
+}
+
+.availability-toggle.off {
+    background: #e1e4e9;
+}
+
+.availability-toggle::after {
+    content: "";
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    width: 17px;
+    height: 17px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow: 0 1px 3px #0002;
+
+    transition: transform 0.2s;
+}
+
+.availability-toggle.on::after {
+    transform: translateX(19px);
+}
+
+
+/* EDIT BUTTON */
+
+.staff-edit-btn {
+    border: none;
+    border-radius: 7px;
+
+    background: #f1f2f5;
+    color: #536078;
+
+    padding: 6px 10px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.staff-edit-btn:hover {
+    background: #e4e7ec;
+}
+
+
+/* DELETE BUTTON */
+
+.staff-delete-btn {
+    border: none;
+    border-radius: 7px;
+
+    background: #fff0f0;
+    color: #e44a4a;
+
+    padding: 6px 9px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.staff-delete-btn:hover {
+    background: #ffe0e0;
+}
+
+
+/* STATUS MESSAGE */
+
+.food-message {
+    font-size: 12px;
+    color: #647086;
+}
+
+.food-message:empty {
+    display: none;
+}
+
+
+/* ==========================================
+   EDIT FOOD MODAL
+   ========================================== */
+
+.food-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(16, 24, 39, 0.5);
+}
+
+.food-modal.hidden {
+    display: none;
+}
+
+.food-modal-card {
+    width: 100%;
+    max-width: 450px;
+
+    max-height: 90vh;
+    overflow-y: auto;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 10px 35px #0002;
+}
+
+.food-modal-card h2 {
+    margin: 0 0 20px;
+
+    font-size: 21px;
+}
+
+.food-modal-card form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.food-modal-card label {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.food-modal-card input:not([type="checkbox"]),
+.food-modal-card textarea,
+.food-modal-card select {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    border: 1px solid #dce1e8;
+    border-radius: 9px;
+
+    font: inherit;
+    font-size: 13px;
+
+    outline: none;
+}
+
+.food-modal-card input:focus,
+.food-modal-card textarea:focus,
+.food-modal-card select:focus {
+    border-color: #e6bd00;
+}
+
+.edit-availability {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 8px;
+}
+
+.edit-availability input {
+    accent-color: #00c874;
+}
+
+.food-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.cancel-edit,
+.save-edit {
+    border: none;
+    border-radius: 9px;
+
+    padding: 11px 15px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.cancel-edit {
+    background: #f0f1f4;
+    color: #536078;
+}
+
+.save-edit {
+    background: var(--yellow);
+    color: var(--ink);
+}
+
+.save-edit:hover {
+    background: #efc600;
+}
+
+.save-edit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* SMALL SCREENS */
+
+@media (max-width: 520px) {
+
+    .staff-food-row {
+        gap: 8px;
+        padding: 9px;
+    }
+
+    .staff-food-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .staff-food-details strong {
+        font-size: 11px;
+    }
+
+    .staff-food-actions {
+        gap: 5px;
+    }
+
+    .availability-toggle {
+        width: 38px;
+    }
+
+    .availability-toggle.on::after {
+        transform: translateX(15px);
+    }
+
+}
+
+/* ==========================================
+   EDIT FOOD IMAGE UPLOAD
+   ========================================== */
+
+.edit-image-section {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 12px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    background: #fafbfc;
+}
+
+#editFoodImagePreview {
+    width: 85px;
+    height: 85px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    background: #f0f1f3;
+
+    flex-shrink: 0;
+}
+
+.edit-image-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    min-width: 0;
+    flex: 1;
+}
+
+#editFoodImage {
+    width: 100%;
+    max-width: 100%;
+
+    font-size: 11px;
+}
+
+.edit-image-controls small {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+/* STAFF LOGOUT BUTTON */
+
+.logout:not(:disabled) {
+    cursor: pointer;
+}
+
+.logout:not(:disabled):hover {
+    background: #e4e7ec;
+    color: #101827;
+}
+
+.logout:disabled {
+    cursor: not-allowed;
+}
+
+/* ==========================================
+   STAFF PROFILE PAGE
+   MATCH STUDENT / FACULTY DESIGN
+   ========================================== */
+
+.staff-profile-content {
+    width: 100%;
+    max-width: 650px;
+}
+
+.staff-profile-heading {
+    margin-bottom: 25px;
+}
+
+.staff-profile-heading h2 {
+    margin: 0 0 5px;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.staff-profile-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* PROFILE IDENTITY */
+
+.staff-profile-card {
+    background: white;
+    border-radius: 15px;
+    padding: 27px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.staff-profile-avatar {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 12px;
+
+    border-radius: 50%;
+    background: var(--yellow);
+
+    display: grid;
+    place-items: center;
+
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.staff-profile-card h2 {
+    margin: 0 0 5px;
+    font-size: 19px;
+}
+
+.staff-profile-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* ACCOUNT INFORMATION */
+
+.staff-profile-info,
+.staff-profile-options {
+    background: white;
+    border-radius: 13px;
+    padding: 6px 20px;
+    margin-bottom: 15px;
+}
+
+.staff-profile-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+}
+
+.staff-profile-row:last-child {
+    border-bottom: none;
+}
+
+.staff-profile-row span {
+    color: var(--muted);
+}
+
+.staff-profile-row strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* PROFILE OPTIONS */
+
+.staff-profile-options button {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--line);
+
+    background: white;
+    padding: 18px 0;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 13px;
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.staff-profile-options button:last-child {
+    border-bottom: none;
+}
+
+.staff-profile-options button:hover:not(:disabled) {
+    color: #aa8900;
+}
+
+.staff-profile-options button:disabled {
+    opacity: 0.55;
+    cursor: default;
+}
+
+/* LOGOUT */
+
+.staff-profile-logout {
+    width: 100%;
+
+    background: white;
+    color: #c83535;
+
+    border: 1px solid #f0caca;
+    border-radius: 10px;
+
+    padding: 14px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.staff-profile-logout:hover {
+    background: #fff5f5;
+}
+
+.staff-profile-logout:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* SIDEBAR PROFILE ADJUSTMENT */
+
+.sidebar-foot {
+    padding: 18px 15px;
+}
+
+.sidebar-foot .identity {
+    margin-bottom: 0;
+}
+
+/* MOBILE */
+
+@media (max-width: 520px) {
+
+    .staff-profile-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .staff-profile-row strong {
+        text-align: left;
+    }
+}
+
+/* ==========================================
+   CLICKABLE STAFF SIDEBAR PROFILE
+   ========================================== */
+
+.staff-profile-link {
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+/* STAFF PROFILE HOVER — MATCH STUDENT/FACULTY */
+
+.sidebar-foot {
+    transition: background 0.2s ease;
+}
+
+.sidebar-foot:has(.staff-profile-link:hover) {
+    background: #fff8d8;
+}
+
+.staff-profile-link:hover {
+    background: transparent;
+}
+
+
+.staff-profile-link:focus-visible {
+    outline: 2px solid #447eee;
+    outline-offset: 3px;
+}
