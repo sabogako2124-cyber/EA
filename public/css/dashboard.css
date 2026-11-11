@@ -531,3 +531,333 @@ button { cursor: pointer; }
     }
 }
 
+/* Center empty notification message */
+#alerts-list:has(> p:only-child) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+#alerts-list:has(> p:only-child) p {
+    margin: 0;
+    color: #8390a7;
+    font-size: 15px;
+}
+
+/* ==========================================
+   CAFÉ PORTAL - FOOD DETAILS PAGE
+   ========================================== */
+
+#food-details-page {
+    padding: 20px 24px;
+    background: #ffffff;
+    min-height: calc(100vh - 40px);
+}
+
+/* MAIN TWO-COLUMN LAYOUT */
+
+#food-details-page .food-details-container {
+    display: grid;
+    grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+    gap: 24px;
+    min-height: calc(100vh - 80px);
+    width: 100%;
+}
+
+/* LEFT SIDE - FOOD IMAGE */
+
+#food-details-page .food-details-image-container {
+    position: relative;
+    width: 100%;
+    height: 390px;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+#food-details-page #details-food-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+/* BACK BUTTON */
+
+#food-details-page .food-details-back {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+    color: #101a32;
+
+    font-size: 24px;
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* RIGHT SIDE - FOOD INFORMATION */
+
+#food-details-page .food-details-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#food-details-page .food-details-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+#food-details-page .food-details-title h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #101a32;
+}
+
+#food-details-page #details-food-price {
+    margin: 15px 0;
+    font-size: 25px;
+    font-weight: 700;
+    color: #101a32;
+}
+
+#food-details-page #details-food-description {
+    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #8390a7;
+    white-space: pre-wrap;
+}
+
+/* AVAILABILITY BADGE */
+
+#food-details-page .food-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+#food-details-page .food-status.available {
+    background: #e8fff1;
+    color: #009e59;
+}
+
+#food-details-page .food-status.unavailable {
+    background: #ffebeb;
+    color: #e53935;
+}
+
+/* CATEGORY AND PRICE INFORMATION */
+
+#food-details-page .food-details-extra {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+#food-details-page .food-detail-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding: 15px;
+    border-radius: 10px;
+
+    background: #f7f8fa;
+}
+
+#food-details-page .food-detail-box small {
+    color: #8390a7;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#food-details-page .food-detail-box strong {
+    color: #101a32;
+    font-size: 14px;
+}
+
+/* QUANTITY AND ADD TO CART */
+
+#food-details-page .food-details-bottom {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+#food-details-page .food-quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    padding: 5px;
+    border-radius: 30px;
+
+    background: #f7f8fa;
+}
+
+#food-details-page .food-quantity button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #101a32;
+
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#food-details-page #increase-quantity {
+    background: #ffd400;
+}
+
+#food-details-page #food-quantity-value {
+    min-width: 18px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+#food-details-page .details-add-cart {
+    flex: 1;
+    min-height: 44px;
+
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+
+    background: #ffd400;
+    color: #101a32;
+
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+#food-details-page .details-add-cart:hover {
+    background: #f0c700;
+}
+
+#food-details-page .details-add-cart:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 850px) {
+    #food-details-page .food-details-container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    #food-details-page .food-details-image-container {
+        height: 320px;
+    }
+
+    #food-details-page .food-details-bottom {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    #food-details-page {
+        padding: 15px;
+    }
+
+    #food-details-page .food-details-extra {
+        grid-template-columns: 1fr;
+    }
+
+    #food-details-page .food-details-title {
+        flex-direction: column;
+    }
+
+    #food-details-page .food-details-bottom {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* ==========================================
+   DELETE NOTIFICATION BUTTON
+   ========================================== */
+
+.alert-card {
+    position: relative;
+}
+
+.delete-notification {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #a0a9ba;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.delete-notification:hover {
+    background: #ffe8e8;
+    color: #e53935;
+}
+
+.delete-notification:focus-visible {
+    outline: 2px solid #e53935;
+    outline-offset: 2px;
+}
+
+.alert-details {
+    padding-right: 30px;
+}

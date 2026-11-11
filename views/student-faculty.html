@@ -21,7 +21,8 @@
             <button type="button" class="nav-btn active" data-page="home"><span class="nav-icon" aria-hidden="true">⌂</span> Home</button>
             <button type="button" class="nav-btn" data-page="cart"><span class="nav-icon" aria-hidden="true">▢</span> Cart <span id="cart-count" class="cart-count">0</span></button>
             <button type="button" class="nav-btn" data-page="orders"><span class="nav-icon" aria-hidden="true">▤</span> Orders</button>
-           <button type="button" class="nav-btn" data-page="alerts"><span class="nav-icon" aria-hidden="true">♧</span>Alerts<span id="alert-count" class="alert-count">2</span></button>
+           <button type="button" class="nav-btn" data-page="alerts"><span class="nav-icon" aria-hidden="true">♧</span>Alerts<span id="alert-count" class="alert-count" hidden="">0</span>
+	   </button>
             <button type="button" class="nav-btn" data-page="profile"><span class="nav-icon" aria-hidden="true">♙</span> Profile</button>
         </nav>
 
@@ -76,6 +77,110 @@
             </div>
         </section>
 
+		<!-- FOOD DETAILS PAGE -->
+		<section
+			id="food-details-page"
+			class="page food-details-page"
+			hidden=""
+>
+			<div class="food-details-container">
+
+				<!-- LEFT: FOOD IMAGE -->
+				<div class="food-details-image-container">
+
+					<button
+						type="button"
+						id="food-details-back"
+						class="food-details-back"
+						aria-label="Back to food menu"
+            >
+						←
+					</button>
+
+					<img
+						id="details-food-image"
+						src="../public/Assets/images/food-placeholder.png"
+						alt="Food image"
+            >
+
+					</div>
+
+				<!-- RIGHT: FOOD INFORMATION -->
+				<div class="food-details-info">
+
+					<div class="food-details-title">
+						<h2 id="details-food-name">Food Name</h2>
+
+						<span
+							id="details-food-status"
+							class="food-status available"
+                >
+							Available
+						</span>
+					</div>
+
+					<h2 id="details-food-price">₱0.00</h2>
+
+					<p id="details-food-description">
+						Food description
+					</p>
+
+					<div class="food-details-extra">
+
+						<div class="food-detail-box">
+							<small>CATEGORY</small>
+							<strong id="details-food-category">
+								Category
+							</strong>
+						</div>
+
+						<div class="food-detail-box">
+							<small>PRICE PER ITEM</small>
+							<strong id="details-unit-price">
+								₱0.00
+							</strong>
+						</div>
+
+					</div>
+
+					<!-- QUANTITY AND CART -->
+					<div class="food-details-bottom">
+
+						<div class="food-quantity">
+
+							<button
+								type="button"
+								id="decrease-quantity"
+                    >
+								−
+							</button>
+
+							<span id="food-quantity-value">1</span>
+
+							<button
+								type="button"
+								id="increase-quantity"
+                    >
+								+
+							</button>
+
+						</div>
+
+						<button
+							type="button"
+							id="details-add-cart"
+							class="details-add-cart"
+                >
+							Add to Cart
+						</button>
+
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
         <!-- CART -->
         <section id="cart-page" class="page secondary-page" hidden>
             <div class="section-title"><h2>My Cart</h2><p>Review the items you want to order.</p></div>
@@ -100,56 +205,25 @@
 
         <!-- ALERTS -->
 
-<!-- ALERTS -->
+		<section id="alerts-page" class="page secondary-page alerts-page" hidden="">
+			<header class="alerts-header">
+				<div>
+					<h2>Alerts</h2>
+					<p id="unread-count">0 unread</p>
+				</div>
 
-<!-- ALERTS -->
-<section id="alerts-page" class="page secondary-page alerts-page" hidden>
+				<button type="button" id="mark-all-read">
+					Mark all read
+				</button>
+			</header>
 
-    <header class="alerts-header">
-        <div>
-            <h2>Alerts</h2>
-            <p id="unread-count">2 unread</p>
-        </div>
-
-        <button type="button" id="mark-all-read">
-            Mark all read
-        </button>
-    </header>
-
-    <div class="alerts-grid">
-
-        <article class="alert-card unread">
-            <span class="alert-dot"></span>
-            <div class="alert-details">
-                <h3>New Promo Available!</h3>
-                <p>Adobo + Lumpia + Rice combo is now available for only ₱95!</p>
-                <small>2 min ago</small>
-            </div>
-        </article>
-
-        <article class="alert-card unread">
-            <span class="alert-dot"></span>
-            <div class="alert-details">
-                <h3>Item Update</h3>
-                <p>Chicken Adobo + Rice is temporarily unavailable today.</p>
-                <small>1 hr ago</small>
-            </div>
-        </article>
-
-        <article class="alert-card">
-            <span class="alert-dot"></span>
-            <div class="alert-details">
-                <h3>Order Ready!</h3>
-                <p>Your order #ORD-2024-001 is ready for pickup at the cafeteria counter.</p>
-                <small>2 hr ago</small>
-            </div>
-        </article>
-
-    </div>
-</section>
-
-
-
+			<div id="alerts-list" class="alerts-grid" aria-live="polite">
+				<p>Loading notifications...</p>
+			</div>
+		</section>
+		
+		
+		
         <!-- PROFILE -->
         <section id="profile-page" class="page secondary-page" hidden>
             <div class="section-title profile-header"><h2>My Profile</h2><p>Your Café Portal account information.</p></div>
